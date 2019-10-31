@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Head Data -->
+<head>
+  <title>UI_Exercise_1</title>
+
+  <!-- Meta-Data -->
+  <meta charset="utf-8"/>
+  <meta name="author" content="Fernando Pérez Lozano & Antonio Viñuela Pérez"/>
+  <meta name="description" content="First Exercise on User Interfaces">
+
+  <!-- CSS Stylesheet Link -->
+  <link rel="stylesheet" href="style/style2.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <!-- JavaScript Script Link -->
+  <script src="js/script2.js"></script>
+  <script src="js/jquery-3.4.1.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/f42db1cb53.js" crossorigin="anonymous"></script>
+  <!-- Icon Library Link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<!-- Header -->
+<header class="panel" id="headbox">
+  <img id="profile-image" src="images/faces.png" alt="WebLogo"/>
+
+  <h1>Welcome!</h1>
+
+  <!-- Header Option Menu -->
+  <nav id="options">
+    <button type="button" class="option-button">
+      <a href="registerPage.html">Register</a>
+    </button>
+    <button type="button" class="option-button">
+      <a href="loginPage.html">Log in</a>
+    </button>
+    <button type="button" class="option-button">
+      <a href="registerPage.html">About</a>
+    </button>
+  </nav>
+
+</header>
+
+<!-- Body -->
+<body>
+  <div id="site-back">
+
+    <!-- Modal PopUp // Delete Activiy -->
+    <div class="panel modal" id="modalDelete">
+      <div class="modal-header">
+        <h2 class="modal-title">Are you sure you want to delete the activity</h2>
+      </div>
+      <div class="modal-buttons">
+        <button onclick="closeModal(this)" class="popup-button" id="yes">Si</button>
+        <button onclick="closeModal(this)" class="popup-button" id="no">No</button>
+      </div>
+    </div>
+
+    <!-- Modal PopUp // Share Activiy -->
+    <div class="panel modal" id="modalShare">
+      <div class="modal-header">
+        <h2 class="modal-title">This text will be replaced by the Title of the activity.</h2>
+      </div>
+      <div class="modal-socials">
+        <a class="socials-icon" href="https://www.instagram.com">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1024px-Instagram_logo_2016.svg.png" class="social-icon" title="Instagram" alt="Instagram Logo">
+        </a>
+        <a class="socials-icon" href="https://www.twitter.com">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/1024px-Twitter_bird_logo_2012.svg.png" class="social-icon" title="Twitter" alt="Twitter Logo">
+        </a>
+        <a class="socials-link" href="https://www.facebook.com">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/600px-Facebook_Logo_%282019%29.png" class="social-icon" title="Facebook" alt="Facebook Logo">
+        </a>
+      </div>
+    </div>
+
+    <!-- Modal PopUp // Archive List Confirmation -->
+    <div class="panel modal" id="modalArchive">
+      <div class="modal-header">
+        <h2 class="modal-title">Are you sure you want to archive this list?</h2>
+      </div>
+      <div class="modal-buttons">
+        <button onclick="closeModal(this)" class="popup-button" id="yes">Si</button>
+        <button onclick="closeModal(this)" class="popup-button" id="no">No</button>
+      </div>
+    </div>
+    <!-- Added feature where the user can exit the modal by clicking outside it -->
+    <div onclick="closeModal(this)" id="overlay"></div>
+
+    <div class="panel vertical-box registration">
+
+      <!-- Form -->
+      <form name="registrationForm" onsubmit="return validateForm()" method="get">
+        <div class="panel form-info-box">
+          <h3 class="section-title">Account Information</h3>
+
+          <div class="input-container">
+            <i class="fa fa-user form-icon"></i>
+            <input class="input-field" type="text" placeholder="Username" name="username" required>
+          </div>
+
+          <div class="input-container">
+            <i class="fa fa-key form-icon"></i>
+            <input class="input-field" type="password" placeholder="Password (max 8 characters: [a-z] [0-9])" name="password" required>
+          </div>
+
+        </div>
+
+        <div class="panel form-info-box">
+          <h3 class="section-title">Personal Information</h3>
+
+
+          <h5 class="input-title">Full Name</h5>
+          <div class="input-container">
+            <i class="fa fa-user form-icon"></i>
+            <input class="input-field" type="text" placeholder="Name and Surname" name="fullname" required>
+          </div>
+
+          <h5 class="input-title">Email Address</h5>
+          <div class="input-container">
+            <i class="fa fa-envelope form-icon"></i>
+            <input class="input-field" type="text" placeholder="Email" name="email" required>
+          </div>
+
+          <h5 class="login-title">Date of Birth</h5>
+          <div class="input-container">
+            <i class="fa fa-birthday-cake form-icon" id="cake-icon"></i>
+            <input class="input-field" type="date" placeholder="Birth Date" name="birthdate">
+          </div>
+
+          <h5 class="login-title">Language</h5>
+          <div class="input-container">
+            <i class="fa fa-globe form-icon" id="globe-icon"></i>
+            <select class="input-field" id="language" name="language">
+              <option value="none">Language (Optional)</option>
+              <option value="english">English</option>
+              <option value="spanish">Spanish</option>
+              <option value="french">French</option>
+              <option value="italian">Italian</option>
+              <option value="chinese">Chinese</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+
+          <h5>Purpose</h5>
+          <div class="input-container">
+            <i class="fa fa-desktop form-icon"></i>
+            <input class="input-field" type="text" placeholder="Work, home tasks... (Optional)" name="purpose">
+          </div>
+
+          <h5>Interests</h5>
+          <div class="input-container">
+            <i class="fa fa-book form-icon"></i>
+            <input class="input-field" type="text" placeholder="Swimming, reading... (Optional)" name="interests">
+          </div>
+
+        </div>
+
+        <div class="panel form-terms-box">
+
+          <h6 id="terms-conditions"><input type="checkbox" name="agreement" value="check" required>
+            I accept the <a id="terms-conditions-link"href="https://www.uc3m.es/ss/Satellite/Auditorio/en/TextoMixta/1371235630011/Terminos_y_condiciones" target="_blank">Terms & Conditions.</a>
+          </h6>
+        </div>
+
+        <div class="panel form-buttons-box">
+          <button class="option-button form-button" type="submit" name="save">Save</button>
+          <button class="option-button form-button" type="reset" name="reset">Delete</button>
+        </div>
+
+
+
+        <!------------------------------------------------->
+
+      </form>
+    </div>
+
+    <!-- Footer -->
+
+    <footer class="panel">
+      <span id="socials-container">
+        <a class="socials-icon" href="https://www.instagram.com">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1024px-Instagram_logo_2016.svg.png" width="20px" height="20px" title="Instagram" alt="Instagram Logo">
+        </a>
+        <div class="vertical-line"></div>
+        <a class="socials-icon" href="https://www.twitter.com">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/1024px-Twitter_bird_logo_2012.svg.png" width="20px" height="20px" title="Twitter" alt="Twitter Logo">
+        </a>
+        <div class="vertical-line"></div>
+        <a class="socials-icon" href="https://www.facebook.com">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/600px-Facebook_Logo_%282019%29.png" width="20px" height="20px" title="Facebook" alt="Facebook Logo">
+        </a>
+      </span>
+      <p id="footer-text">
+        TravelCounsel Copyright &copy; 2019
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
