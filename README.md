@@ -12,7 +12,7 @@ It's pretty dumb, loging in and registering is hacky and made through cookies...
 <p align="center">
   <h3>
     <a href="https://fernprlz.github.io">
-      "<<Take me back>>"
+      →Take me back←
     </a>
   </h3>
 </p>
